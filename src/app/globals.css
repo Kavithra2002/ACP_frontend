@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/*
+  ACP design tokens — taken from acp-am.com (assets/css/style.css :root)
+  ink #041f3f · ink-2 #052b56 · forest #004a8f · sage #6f9cc3 · mist #e5edf4
+  paper #f5f7f9 · paper-2 #eaf0f5 · white #fbfcfd · cyan #00aeef · bronze #86754d
+  navy #002060 · footer #00152f
+*/
+@theme {
+  --color-ink: #041f3f;
+  --color-ink-2: #052b56;
+  --color-forest: #004a8f;
+  --color-sage: #6f9cc3;
+  --color-mist: #e5edf4;
+  --color-paper: #f5f7f9;
+  --color-paper-2: #eaf0f5;
+  --color-snow: #fbfcfd;
+  --color-cyan: #00aeef;
+  --color-bronze: #86754d;
+  --color-navy: #002060;
+  --color-abyss: #00152f;
+  --color-line: rgb(4 31 63 / 0.15);
+  --color-line-light: rgb(255 255 255 / 0.18);
+  --color-up: #0f7b55;
+  --color-down: #b4373a;
+
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+
+  --ease-acp: cubic-bezier(0.22, 0.8, 0.22, 1);
+  --ease-acp-soft: cubic-bezier(0.2, 0.68, 0.22, 1);
+
+  --container-site: 1360px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+  }
+  h1 em,
+  h2 em,
+  h3 em {
+    font-style: italic;
+    color: var(--color-forest);
+  }
+  .on-dark h1 em,
+  .on-dark h2 em,
+  .on-dark h3 em {
+    color: var(--color-cyan);
+  }
+  ::selection {
+    background: var(--color-cyan);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding-inline: 18px;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 40px;
+    }
+  }
+  /* small uppercase tracked label — ACP nav / eyebrow style */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .field {
+    width: 100%;
+    border: 1px solid var(--color-line);
+    background: var(--color-snow);
+    padding: 14px 16px;
+    font-size: 15px;
+    color: var(--color-ink);
+    border-radius: 0;
+    transition: border-color 0.2s;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-forest);
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
